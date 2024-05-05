@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-
+import axios from './api'
 const loginSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
@@ -24,16 +24,12 @@ function Login() {
 
     const handleLogin = async (values, actions) => {
         try {
-            const response = await fetch('/api/admin/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
+            const response = await axios.post('/api/admin/login', JSON.stringify({
                     username: values.username,
                     password: values.password,
-                }),
-            });
+                }
+            ))
+
             if (response.status === 200) {
                 setAlert({ message: 'Login success', type: 'success' });
                 localStorage.setItem('login', "true");
