@@ -20,7 +20,7 @@ const Attendance = () => {
     try {
       const mostOccurred = mode(names);
       const id = mostOccurred.persons[0];
-      const response = await axios.get(`http://127.0.0.1:3001/api/employees/get/${id}`);
+      const response = await axios.get(`/api/employees/get/${id}`);
       const name = response.data.name;
       try {
         const currentTime = new Date();
@@ -54,7 +54,7 @@ const Attendance = () => {
         status
       };
       console.log(payload);
-      const response = await axios.post(`http://127.0.0.1:3001/api/attendance/mark`, payload); // Changed the URL to include the port number
+      const response = await axios.post(`/api/attendance/mark`, payload); // Changed the URL to include the port number
       return response.data;
     } catch (error) {
       throw new Error("Failed to mark attendance. Please try again.");
@@ -74,7 +74,7 @@ const Attendance = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
       <h2 className="text-3xl font-semibold mb-6">Please align your face within the circle</h2>
-      <CircularWebcam endpointUrl="http://127.0.0.1:3001/api/ai/predict" numImages={3} onResponse={handleResponse} />
+      <CircularWebcam endpointUrl="/api/ai/predict" numImages={3} onResponse={handleResponse} />
       {prediction && (
         <div className="mt-6">
           <p className="text-xl font-semibold">

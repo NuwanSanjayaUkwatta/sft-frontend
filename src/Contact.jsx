@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import axios from "axios";
+import axios from "./api";
 
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -32,7 +32,7 @@ const Contact = () => {
     },
     onSubmit: async values => {
       try {
-        const response = await axios.post("http://127.0.0.1:3001/api/contact/create", values);
+        const response = await axios.post("/api/contact/create", values);
         setIsSubmitted(true);
       } catch (error) {
         console.error(error);

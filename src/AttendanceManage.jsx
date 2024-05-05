@@ -8,7 +8,7 @@ const AttendanceManage = () => {
     const fetchAttendance = async () => {
       
       try {
-        const response = await axios.get('http://127.0.0.1:3001/api/attendance/all');
+        const response = await axios.get('/api/attendance/all');
             console.log(response.data);
         setAttendance(response.data.attendance); // Set the attendance data from the response
       } catch (error) {

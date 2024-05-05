@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "./api";
 import CircularWebcam from "./CircularWebcam";
 
 const Employee = () => {
@@ -28,7 +28,7 @@ const Employee = () => {
     } else {
       try {
         // Assuming you want to make another API call upon successful initial response
-        const response = await axios.post("http://127.0.0.1:3001/api/ai/train");
+        const response = await axios.post("/api/ai/train");
         // Check response for success and update state accordingly
         if (response.status === 200) {  // Assuming 200 OK means success
           setAlertInfo({
@@ -53,7 +53,7 @@ const Employee = () => {
   const fetchEmployees = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:3001/api/employees/all"
+        "/api/employees/all"
       );
       setEmployees(response.data);
     } catch (error) {
@@ -74,7 +74,7 @@ const Employee = () => {
 
     try {
       await axios.post(
-        "http://127.0.0.1:3001/api/employees/create",
+        "/api/employees/create",
         employeeData
       );
       setAlertInfo({
@@ -94,7 +94,7 @@ const Employee = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:3001/api/employees/delete/${id}`);
+      await axios.delete(`/api/employees/delete/${id}`);
       setAlertInfo({
         show: true,
         message: "Employee deleted successfully!",
@@ -194,7 +194,7 @@ const Employee = () => {
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
         >
           <CircularWebcam
-            endpointUrl={`http://127.0.0.1:3001/api/ai/upload/${currentEmployeeId}`}
+            endpointUrl={`/api/ai/upload/${currentEmployeeId}`}
             numImages={10}
             onResponse={handleWebcamResponse}
             buttonLabel={"Train"}

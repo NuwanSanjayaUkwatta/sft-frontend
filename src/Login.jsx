@@ -24,7 +24,7 @@ function Login() {
 
     const handleLogin = async (values, actions) => {
         try {
-            const response = await fetch('http://127.0.0.1:3001/api/admin/login', {
+            const response = await fetch('/api/admin/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
