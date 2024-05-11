@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CircularWebcam from './CircularWebcam';
-import axios from 'axios';
+import axios from './api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 
